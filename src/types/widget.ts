@@ -1,10 +1,16 @@
 import { EventMetadata } from './events';
 
-export type WidgetType = 'buy' | 'checkout';
+export type WidgetType = 'buy' | 'checkout' | 'sell';
 
 export type IntegrationType = 'direct' | 'secure_standalone';
 
+/**
+ * Note: Two factor authentication does not work in an iframe, so the embedded experience should not be used. It will
+ * be removed in a future release.
+ */
 export type Experience = 'embedded' | 'popup' | 'new_tab';
+
+export type Theme = 'light' | 'dark';
 
 export type EmbeddedContentStyles = {
   target?: string;
@@ -20,6 +26,7 @@ export type CBPayExperienceOptions<T> = {
   appId: string;
   host?: string;
   debug?: boolean;
+  theme?: Theme;
   onExit?: (error?: Error) => void;
   onSuccess?: () => void;
   onEvent?: (event: EventMetadata) => void;

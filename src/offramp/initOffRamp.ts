@@ -1,25 +1,25 @@
 import { CBPayExperienceOptions } from '../types/widget';
 import { CBPayInstance, CBPayInstanceType } from '../utils/CBPayInstance';
-import { OnRampAppParams } from '../types/onramp';
+import { OffRampAppParams } from '../types/offramp';
 
-export type InitOnRampParams = CBPayExperienceOptions<OnRampAppParams>;
+export type InitOffRampParams = CBPayExperienceOptions<OffRampAppParams>;
 
-export type InitOnRampCallback = {
+export type InitOffRampCallback = {
   (error: Error, instance: null): void;
   (error: null, instance: CBPayInstanceType): void;
 };
 
-export const initOnRamp = (
+export const initOffRamp = (
   {
     experienceLoggedIn = 'new_tab', // default experience type
     widgetParameters,
     ...options
-  }: InitOnRampParams,
-  callback: InitOnRampCallback,
+  }: InitOffRampParams,
+  callback: InitOffRampCallback,
 ): void => {
   const instance = new CBPayInstance({
     ...options,
-    widget: 'buy',
+    widget: 'sell',
     experienceLoggedIn,
     appParams: widgetParameters,
   });

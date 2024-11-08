@@ -1,17 +1,17 @@
-import { initOnRamp } from './initOnRamp';
+import { initOffRamp } from './initOffRamp';
 import { CBPayInstance } from '../utils/CBPayInstance';
 
 jest.mock('../utils/CBPayInstance');
 
-describe('initOnRamp', () => {
+describe('initOffRamp', () => {
   it('should return CBPayInstance', async () => {
     let instance: unknown;
-    initOnRamp(
+    initOffRamp(
       {
         experienceLoggedIn: 'popup',
         experienceLoggedOut: 'popup',
         appId: 'abc123',
-        widgetParameters: { destinationWallets: [] },
+        widgetParameters: { addresses: { '0x1': ['base'] }, redirectUrl: 'https://example.com' },
       },
       (_, newInstance) => {
         instance = newInstance;
@@ -22,6 +22,4 @@ describe('initOnRamp', () => {
 
     expect(instance instanceof CBPayInstance).toBe(true);
   });
-
-  // TODO: More tests
 });
